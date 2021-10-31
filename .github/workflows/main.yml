@@ -29,7 +29,11 @@ jobs:
           patch ./linux/PKGBUILD ../pkgbuild.patch
           cp ../beacon_timeout.patch .
       - run: cat build/linux/PKGBUILD
-      - run: sudo -u nobody makepkg -s
+      - run: |
+          useradd -d /build -m build
+          echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo chown -R build /github/workspace /github/home
+      - run: sudo -u build makepkg -s
         working-directory: ./build
       - uses: actions/upload-artifact@v2
         with:
