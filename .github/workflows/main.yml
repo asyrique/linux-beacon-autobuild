@@ -19,6 +19,6 @@ jobs:
     steps:
       - run: mkdir ~/build/
       - run: cd ~/build/
-      - run: pacman -Sy asp base-devel
+      - run: pacman -Sy asp base-devel --noconfirm
       - run: asp update linux
       - run: asp export linux
