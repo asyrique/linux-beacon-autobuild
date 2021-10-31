@@ -17,9 +17,7 @@ jobs:
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
-      - run: |
-          groupadd build
-          useradd --shell /usr/bin/false build
+      - run: useradd --shell /usr/bin/false build
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: |
