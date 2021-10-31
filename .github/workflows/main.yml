@@ -32,6 +32,7 @@ jobs:
       - run: cat build/linux/PKGBUILD
       - run: | 
           chown -R build /__w
+          cd ./build
           runuser -u build -c 'makepkg -s'
       - uses: actions/upload-artifact@v2
         with:
