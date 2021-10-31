@@ -17,18 +17,17 @@ jobs:
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
-      - run: useradd --create-home --shell /usr/bin/false build
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: |
           mkdir ./build
           cd ./build
-          pacman -Sy asp base-devel --noconfirm
+          pacman -Sy asp git patch --noconfirm
           asp update linux
           asp export linux
           patch ./linux/PKGBUILD ../removedocs.patch
           patch ./linux/PKGBUILD ../pkgbuild.patch
-          cp ../beacon_timeout.patch .
+          cp ../beacon_timeout.patch ./linux/
       - run: cat build/linux/PKGBUILD
       - name: Makepkg Build and Check
         id: makepkg
