@@ -1,0 +1,28 @@
+--- PKGBUILD	2021-10-31 18:44:29.257210858 +0800
++++ PKGBUILD	2021-10-31 18:46:38.283366499 +0800
+@@ -1,6 +1,6 @@
+ # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+ 
+-pkgbase=linux
++pkgbase=linux-beacon
+ pkgver=5.14.15.arch1
+ pkgrel=1
+ pkgdesc='Linux'
+@@ -18,6 +18,7 @@
+ source=(
+   "$_srcname::git+https://github.com/archlinux/linux?signed#tag=$_srctag"
+   config         # the main kernel config file
++  beacon_timeout.patch
+ )
+ validpgpkeys=(
+   'ABAF11C65A2970B130ABE3C479BE3E4300411886'  # Linus Torvalds
+@@ -26,7 +27,8 @@
+   'C7E7849466FE2358343588377258734B41C31549'  # David Runge <dvzrv@archlinux.org>
+ )
+ sha256sums=('SKIP'
+-            'f5d3635520c9eb9519629f6df0d9a58091ed4b1ea4ddb1acd5caf5822d91a060')
++            'f5d3635520c9eb9519629f6df0d9a58091ed4b1ea4ddb1acd5caf5822d91a060'
++            '3382e8dde1d94791c7bf7da02a6e7ec580342aab5a5a0e089cac7cab85142059')
+ 
+ export KBUILD_BUILD_HOST=archlinux
+ export KBUILD_BUILD_USER=$pkgbase

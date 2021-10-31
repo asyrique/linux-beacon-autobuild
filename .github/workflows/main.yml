@@ -22,5 +22,5 @@ jobs:
       - run: pacman -Sy asp base-devel --noconfirm
       - run: asp update linux
       - run: asp export linux
-      - run: sed -i 's/pkgbase=linux/pkgbase=linux-beacon/' linux/config/PKGBUILD
+      - run: patch linux/config/PKGBUILD ~/pkgbuild.patch
       - run: cat linux/config/PKGBUILD
