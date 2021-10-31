@@ -18,6 +18,6 @@ jobs:
     steps:
       - run: mkdir ~/build/
       - run: cd ~/build/
-      - run: sudo pacman -S asp base-devel
+      - run: pacman -S asp base-devel
       - run: asp update linux
       - run: asp export linux
