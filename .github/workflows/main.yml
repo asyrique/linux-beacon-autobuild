@@ -17,10 +17,12 @@ jobs:
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
-      - run: mkdir ~/build/
-      - run: cd ~/build/
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: mkdir build/
+      - run: cd build/
       - run: pacman -Sy asp base-devel --noconfirm
       - run: asp update linux
       - run: asp export linux
-      - run: patch linux/config/PKGBUILD ~/pkgbuild.patch
+      - run: patch linux/config/PKGBUILD ../pkgbuild.patch
       - run: cat linux/config/PKGBUILD
