@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: mkdir ./build/
+      - run: mkdir ./build
       - run: ls .
-      - run: cd ./build/
+      - run: cd build
       - run: ls ../
       - run: pacman -Sy asp base-devel --noconfirm
       - run: asp update linux
