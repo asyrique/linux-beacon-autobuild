@@ -12,7 +12,7 @@ jobs:
   build-kernel:
     runs-on: ubuntu-latest
     container:
-      image: archlinux
+      image: docker://countstarlight/makepkg:latest
       options: --privileged
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
@@ -29,10 +29,6 @@ jobs:
           patch ./linux/PKGBUILD ../pkgbuild.patch
           cp ../beacon_timeout.patch .
       - run: cat build/linux/PKGBUILD
-      - run: |
-          useradd -d /build -m build
-          echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo chown -R build /__w/
       - run: sudo -u build makepkg -s
         working-directory: ./build
       - uses: actions/upload-artifact@v2
