@@ -12,12 +12,14 @@ jobs:
   build-kernel:
     runs-on: ubuntu-latest
     container:
-      image: docker://countstarlight/makepkg:latest
-      options: --privileged --user=0
+      image: archlinux
+      options: --privileged
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
-      - run: sudo chown -R build /__w
+      - run: |
+          groupadd build
+          useradd --shell /usr/bin/false build
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: |
@@ -30,7 +32,9 @@ jobs:
           patch ./linux/PKGBUILD ../pkgbuild.patch
           cp ../beacon_timeout.patch .
       - run: cat build/linux/PKGBUILD
-      - run: sudo -u build makepkg -s
+      - run: | 
+          chown -R build /__w
+          sudo -u build makepkg -s
         working-directory: ./build
       - uses: actions/upload-artifact@v2
         with:
