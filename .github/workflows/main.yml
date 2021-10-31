@@ -25,5 +25,13 @@ jobs:
           pacman -Sy asp base-devel --noconfirm
           asp update linux
           asp export linux
+          patch ./linux/PKGBUILD ../removedocs.patch
           patch ./linux/PKGBUILD ../pkgbuild.patch
-      - run: cat ./build/linux/PKGBUILD
+          cp ../beacon_timeout.patch .
+      - run: cat build/linux/PKGBUILD
+      - run: makepkg -s
+        working-directory: ./build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: ./build/linux/linux-beacon*
