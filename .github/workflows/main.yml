@@ -19,13 +19,11 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: mkdir ./build
-      - run: ls .
-      - run: cd build
-      - run: ls .
-      - run: pacman -Sy asp base-devel --noconfirm
-      - run: asp update linux
-      - run: asp export linux
-      - run: ls .
-      - run: patch ./linux/config/PKGBUILD ./pkgbuild.patch
-      - run: cat ./linux/config/PKGBUILD
+      - run: |
+          mkdir ./build
+          cd ./build
+          pacman -Sy asp base-devel --noconfirm
+          asp update linux
+          asp export linux
+          patch ./linux/PKGBUILD ../pkgbuild.patch
+      - run: cat ./build/linux/PKGBUILD
