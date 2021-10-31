@@ -32,7 +32,7 @@ jobs:
       - run: |
           useradd -d /build -m build
           echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo chown -R build /github/workspace /github/home
+          sudo chown -R build /__w/
       - run: sudo -u build makepkg -s
         working-directory: ./build
       - uses: actions/upload-artifact@v2
