@@ -22,10 +22,10 @@ jobs:
       - run: mkdir ./build
       - run: ls .
       - run: cd build
-      - run: ls ../
+      - run: ls .
       - run: pacman -Sy asp base-devel --noconfirm
       - run: asp update linux
       - run: asp export linux
-      - run: ls ../
-      - run: patch ./linux/config/PKGBUILD ../pkgbuild.patch
+      - run: ls .
+      - run: patch ./linux/config/PKGBUILD ./pkgbuild.patch
       - run: cat ./linux/config/PKGBUILD
