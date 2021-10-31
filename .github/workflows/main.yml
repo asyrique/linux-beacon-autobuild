@@ -30,11 +30,14 @@ jobs:
           patch ./linux/PKGBUILD ../pkgbuild.patch
           cp ../beacon_timeout.patch .
       - run: cat build/linux/PKGBUILD
-      - run: | 
-          chown -R build /__w
-          cd ./build
-          su - build -c 'makepkg -s'
+      - name: Makepkg Build and Check
+        id: makepkg
+        uses: edlanglois/pkgbuild-action@v1
+        with:
+          pkgdir: build/linux
+          makepkgArgs: "-s"
+      - run: echo "done"
       - uses: actions/upload-artifact@v2
         with:
           name: packages
-          path: ./build/linux/linux-beacon*
+          path: build/linux/linux-beacon*
