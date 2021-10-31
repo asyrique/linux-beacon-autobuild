@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker://countstarlight/makepkg:latest
-      options: --privileged
+      options: --privileged --user=0
       volumes:
         - /sys/fs/cgroup:/sys/fs/cgroup
     steps:
