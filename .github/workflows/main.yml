@@ -33,7 +33,7 @@ jobs:
       - run: | 
           chown -R build /__w
           sudo -u build makepkg -s
-        working-directory: ./build
+        working-directory: build
       - uses: actions/upload-artifact@v2
         with:
           name: packages
