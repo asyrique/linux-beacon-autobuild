@@ -1,6 +1,19 @@
-63d63
-<   make htmldocs
-194c194
-< pkgname=("$pkgbase" "$pkgbase-headers" "$pkgbase-docs")
----
-> pkgname=("$pkgbase" "$pkgbase-headers")
+--- originalPKGBUILD	2021-10-31 19:24:11.405785459 +0800
++++ newPKGBUILD	2021-10-31 19:25:11.425822360 +0800
+@@ -61,7 +61,6 @@
+ build() {
+   cd $_srcname
+   make all
+-  make htmldocs
+ }
+ 
+ _package() {
+@@ -192,7 +191,7 @@
+   ln -sr "$builddir/Documentation" "$pkgdir/usr/share/doc/$pkgbase"
+ }
+ 
+-pkgname=("$pkgbase" "$pkgbase-headers" "$pkgbase-docs")
++pkgname=("$pkgbase" "$pkgbase-headers")
+ for _p in "${pkgname[@]}"; do
+   eval "package_$_p() {
+     $(declare -f "_package${_p#$pkgbase}")
