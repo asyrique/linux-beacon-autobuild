@@ -25,7 +25,6 @@ jobs:
           pacman -Sy asp git patch --noconfirm
           asp update linux
           asp export linux
-          patch ./linux/PKGBUILD ../removedocs.patch
           patch ./linux/PKGBUILD ../pkgbuild.patch
           cp ../beacon_timeout.patch ./linux/
       - run: cat build/linux/PKGBUILD
